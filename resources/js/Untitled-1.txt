@@ -1,0 +1,56 @@
+require('./bootstrap');
+
+window.addEventListener('DOMContentLoaded', () => {
+    hideStudents();
+    modalConfirmation();
+})
+
+
+function hideStudents(){
+    students = document.querySelectorAll('.classroom-section article');
+    for(i=0;i<students.length;i++){
+        students[i].style.display="none";
+    }
+}
+
+
+selectedClass = document.querySelectorAll('.classroom-section h2')
+selectedClass.forEach(function(element){
+    element.addEventListener('click', filterStudents);
+});
+
+
+function filterStudents(event){
+    classStudents = document.querySelectorAll('.classroom-section article')
+    for(i=0;i<classStudents.length;i++){
+       if(event.target.id == classStudents[i].id){
+        classStudents[i].style.display = "block";
+       }else{
+        classStudents[i].style.display = "none";
+       }
+    }
+};
+
+// modalSelected = document.querySelectorAll('.display-modal')
+// modalSelected.forEach(function(element){
+//     element.addEventListener('click', modalConfirmation);
+// });
+
+function modalConfirmation(id){
+    console.log('#' + id + ' .modal-confirmation')
+
+    modal = document.querySelector('#' + id + ' .modal-confirmation')
+    modal.style.display = "block";
+}
+
+closeModal = document.querySelectorAll('.close-modal')
+closeModal.forEach(function(element){
+    element.addEventListener('click', modalClose);
+});
+
+function modalClose(){
+    modal = document.querySelector('.modal-confirmation')
+    modal.style.display = "none";
+}
+
+
